@@ -1,0 +1,81 @@
+//
+//  NetworkManager.swift
+//  MeetPeople
+//
+//  Created by Prof K on 10/4/22.
+//
+
+import Foundation
+import Combine
+
+enum HTTPMethod: String {
+    case get = "GET" // Other requests can be added here
+}
+
+enum Task {
+    case getRequest // Various tasks like (POST, DELETE) can be added here also
+}
+
+protocol TargetType {
+    var baseURL: String { get } // This holds the base URL
+    var path: String { get } // This adds to the base url for a particular endpoint
+    var method: HTTPMethod { get } // This handles all the HTTP methods that where added, although the only method here is the GET others are: POST, DELETE, PATCH and so on.
+    var task: Task { get } // This is for the type of action depending on the method
+}
+
+class MeetPeopleAPI<T: TargetType> {
+    
+    private var cancellabes = Set<AnyCancellable>()
+    
+    private func buildParams(task: Task) -> Data {
+        switch task {
+        case .getRequest:
+            do {
+                return try JSONSerialization.data(withJSONObject: [:], options: [])
+            } catch {
+                print("An error has occured")
+            }
+        }
+        return Data()
+    }
+    
+    func fetchData<M: Decodable>(target: T, responseClass: M.Type) -> Future<M, Error> {
+        return Future<M, Error> { [weak self] promise in
+            guard let url = URL(string: target.baseURL + target.path),
+                  let self = self
+            else { return promise(.failure(NetworkError.invalidURL)) }
+            var request = URLRequest(url: url)
+            request.httpMethod = target.method.rawValue
+            request.httpBody = self.buildParams(task: .getRequest)
+            URLSession.shared
+                .dataTaskPublisher(for: request)
+                .tryMap { response -> Data in
+                    guard let httpResponse = response.response as? HTTPURLResponse,
+                          httpResponse.statusCode >= 200 && httpResponse.statusCode < 300
+                    else {
+                        throw NetworkError.responseError
+                    }
+                    return response.data
+                }
+                .decode(type: M.self, decoder: JSONDecoder())
+                .receive(on: RunLoop.main)
+                .sink { completion in
+                    switch completion {
+                    case .failure(let error):
+                        promise(.failure(error))
+                    case .finished:
+                        print("Finished")
+                    }
+                } receiveValue: { decodedData in
+                    promise(.success(decodedData))
+                }
+                .store(in: &self.cancellabes)
+
+
+               
+
+        }
+    }
+}
+
+
