@@ -49,14 +49,7 @@ class MeetPeopleAPI<T: TargetType> {
             request.httpBody = self.buildParams(task: .getRequest)
             URLSession.shared
                 .dataTaskPublisher(for: request)
-                .tryMap { response -> Data in
-                    guard let httpResponse = response.response as? HTTPURLResponse,
-                          httpResponse.statusCode >= 200 && httpResponse.statusCode < 300
-                    else {
-                        throw NetworkError.responseError
-                    }
-                    return response.data
-                }
+                .tryMap(self.handleData)
                 .decode(type: M.self, decoder: JSONDecoder())
                 .receive(on: RunLoop.main)
                 .sink { completion in
@@ -70,11 +63,16 @@ class MeetPeopleAPI<T: TargetType> {
                     promise(.success(decodedData))
                 }
                 .store(in: &self.cancellabes)
-
-
-               
-
         }
+    }
+    
+    func handleData(output: URLSession.DataTaskPublisher.Output) throws -> Data {
+        guard let httpResponse = output.response as? HTTPURLResponse,
+              httpResponse.statusCode >= 200 && httpResponse.statusCode < 300
+        else {
+            throw NetworkError.responseError
+        }
+        return output.data
     }
 }
 

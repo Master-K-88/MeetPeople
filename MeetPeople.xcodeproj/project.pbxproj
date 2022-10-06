@@ -17,6 +17,9 @@
 		72BAD27628EE494700C85DC9 /* MeetPeopleAPIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BAD27528EE494700C85DC9 /* MeetPeopleAPIEndpoint.swift */; };
 		72BAD27828EE66DB00C85DC9 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BAD27728EE66DB00C85DC9 /* NetworkError.swift */; };
 		72BAD27A28EE6C1200C85DC9 /* MeetPeopleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BAD27928EE6C1200C85DC9 /* MeetPeopleViewModel.swift */; };
+		72BAD27D28EE785800C85DC9 /* TextFieldWithErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BAD27C28EE785800C85DC9 /* TextFieldWithErrorHandler.swift */; };
+		72BAD27F28EE842300C85DC9 /* SecuredFieldWithErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BAD27E28EE842300C85DC9 /* SecuredFieldWithErrorHandler.swift */; };
+		72C3730A28EF507800190C83 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C3730928EF507800190C83 /* StringUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		72BAD27528EE494700C85DC9 /* MeetPeopleAPIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetPeopleAPIEndpoint.swift; sourceTree = "<group>"; };
 		72BAD27728EE66DB00C85DC9 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		72BAD27928EE6C1200C85DC9 /* MeetPeopleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetPeopleViewModel.swift; sourceTree = "<group>"; };
+		72BAD27C28EE785800C85DC9 /* TextFieldWithErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithErrorHandler.swift; sourceTree = "<group>"; };
+		72BAD27E28EE842300C85DC9 /* SecuredFieldWithErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuredFieldWithErrorHandler.swift; sourceTree = "<group>"; };
+		72C3730928EF507800190C83 /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,7 @@
 		7287172A28EB4B0700BD3AC0 /* MeetPeople */ = {
 			isa = PBXGroup;
 			children = (
+				72BAD27B28EE782000C85DC9 /* Extensions */,
 				7287172B28EB4B0700BD3AC0 /* MeetPeopleApp.swift */,
 				7287172D28EB4B0700BD3AC0 /* ContentView.swift */,
 				7287172F28EB4B0900BD3AC0 /* Assets.xcassets */,
@@ -83,6 +90,16 @@
 				7287173228EB4B0900BD3AC0 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		72BAD27B28EE782000C85DC9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				72BAD27C28EE785800C85DC9 /* TextFieldWithErrorHandler.swift */,
+				72BAD27E28EE842300C85DC9 /* SecuredFieldWithErrorHandler.swift */,
+				72C3730928EF507800190C83 /* StringUtils.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,7 +177,10 @@
 				72BAD27828EE66DB00C85DC9 /* NetworkError.swift in Sources */,
 				7287172E28EB4B0700BD3AC0 /* ContentView.swift in Sources */,
 				72BAD27228EE477B00C85DC9 /* MeetPeopleAPI.swift in Sources */,
+				72BAD27F28EE842300C85DC9 /* SecuredFieldWithErrorHandler.swift in Sources */,
+				72BAD27D28EE785800C85DC9 /* TextFieldWithErrorHandler.swift in Sources */,
 				72BAD27428EE47CF00C85DC9 /* MeetPeopleNetworking.swift in Sources */,
+				72C3730A28EF507800190C83 /* StringUtils.swift in Sources */,
 				72BAD27628EE494700C85DC9 /* MeetPeopleAPIEndpoint.swift in Sources */,
 				7287172C28EB4B0700BD3AC0 /* MeetPeopleApp.swift in Sources */,
 			);
