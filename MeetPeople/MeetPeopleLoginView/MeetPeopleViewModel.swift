@@ -58,7 +58,6 @@ class MeetPeopleViewModel: MeetPeopleAPI<MeetPeopleNetworking>, ObservableObject
             self?.isSecureHighlighted = false
             self?.subscriptions.removeAll()
         }
-//
     }
     
     

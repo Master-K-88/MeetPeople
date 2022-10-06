@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		725CDD2428EF626900B070F1 /* MeetPeopleUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725CDD2328EF626800B070F1 /* MeetPeopleUserModel.swift */; };
+		725CDD2728EF689C00B070F1 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725CDD2628EF689C00B070F1 /* SearchView.swift */; };
+		725CDD2A28EF69F900B070F1 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725CDD2928EF69F900B070F1 /* UserCell.swift */; };
 		7287172C28EB4B0700BD3AC0 /* MeetPeopleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7287172B28EB4B0700BD3AC0 /* MeetPeopleApp.swift */; };
 		7287172E28EB4B0700BD3AC0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7287172D28EB4B0700BD3AC0 /* ContentView.swift */; };
 		7287173028EB4B0900BD3AC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7287172F28EB4B0900BD3AC0 /* Assets.xcassets */; };
@@ -23,6 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		725CDD2328EF626800B070F1 /* MeetPeopleUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetPeopleUserModel.swift; sourceTree = "<group>"; };
+		725CDD2628EF689C00B070F1 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		725CDD2928EF69F900B070F1 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		7287172828EB4B0700BD3AC0 /* MeetPeople.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetPeople.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7287172B28EB4B0700BD3AC0 /* MeetPeopleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetPeopleApp.swift; sourceTree = "<group>"; };
 		7287172D28EB4B0700BD3AC0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -50,6 +56,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		725CDD2228EF624B00B070F1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				725CDD2328EF626800B070F1 /* MeetPeopleUserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		725CDD2528EF688000B070F1 /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				725CDD2828EF69E400B070F1 /* UserCell */,
+				725CDD2628EF689C00B070F1 /* SearchView.swift */,
+			);
+			path = SearchView;
+			sourceTree = "<group>";
+		};
+		725CDD2828EF69E400B070F1 /* UserCell */ = {
+			isa = PBXGroup;
+			children = (
+				725CDD2928EF69F900B070F1 /* UserCell.swift */,
+			);
+			path = UserCell;
+			sourceTree = "<group>";
+		};
+		725CDD2B28EF6B4300B070F1 /* MeetPeopleLoginView */ = {
+			isa = PBXGroup;
+			children = (
+				72BAD27928EE6C1200C85DC9 /* MeetPeopleViewModel.swift */,
+				7287172D28EB4B0700BD3AC0 /* ContentView.swift */,
+			);
+			path = MeetPeopleLoginView;
+			sourceTree = "<group>";
+		};
+		725CDD2C28EF6B6A00B070F1 /* NetworManagerGroup */ = {
+			isa = PBXGroup;
+			children = (
+				729B7FAC28EC6FB5005ABB8C /* NetworkManager.swift */,
+				72BAD27128EE477B00C85DC9 /* MeetPeopleAPI.swift */,
+				72BAD27328EE47CF00C85DC9 /* MeetPeopleNetworking.swift */,
+				72BAD27528EE494700C85DC9 /* MeetPeopleAPIEndpoint.swift */,
+				72BAD27728EE66DB00C85DC9 /* NetworkError.swift */,
+			);
+			path = NetworManagerGroup;
+			sourceTree = "<group>";
+		};
 		7287171F28EB4B0600BD3AC0 = {
 			isa = PBXGroup;
 			children = (
@@ -69,17 +121,14 @@
 		7287172A28EB4B0700BD3AC0 /* MeetPeople */ = {
 			isa = PBXGroup;
 			children = (
+				725CDD2528EF688000B070F1 /* SearchView */,
+				725CDD2228EF624B00B070F1 /* Models */,
 				72BAD27B28EE782000C85DC9 /* Extensions */,
 				7287172B28EB4B0700BD3AC0 /* MeetPeopleApp.swift */,
-				7287172D28EB4B0700BD3AC0 /* ContentView.swift */,
+				725CDD2B28EF6B4300B070F1 /* MeetPeopleLoginView */,
 				7287172F28EB4B0900BD3AC0 /* Assets.xcassets */,
 				7287173128EB4B0900BD3AC0 /* Preview Content */,
-				729B7FAC28EC6FB5005ABB8C /* NetworkManager.swift */,
-				72BAD27128EE477B00C85DC9 /* MeetPeopleAPI.swift */,
-				72BAD27328EE47CF00C85DC9 /* MeetPeopleNetworking.swift */,
-				72BAD27528EE494700C85DC9 /* MeetPeopleAPIEndpoint.swift */,
-				72BAD27728EE66DB00C85DC9 /* NetworkError.swift */,
-				72BAD27928EE6C1200C85DC9 /* MeetPeopleViewModel.swift */,
+				725CDD2C28EF6B6A00B070F1 /* NetworManagerGroup */,
 			);
 			path = MeetPeople;
 			sourceTree = "<group>";
@@ -176,9 +225,12 @@
 				729B7FAD28EC6FB5005ABB8C /* NetworkManager.swift in Sources */,
 				72BAD27828EE66DB00C85DC9 /* NetworkError.swift in Sources */,
 				7287172E28EB4B0700BD3AC0 /* ContentView.swift in Sources */,
+				725CDD2428EF626900B070F1 /* MeetPeopleUserModel.swift in Sources */,
 				72BAD27228EE477B00C85DC9 /* MeetPeopleAPI.swift in Sources */,
+				725CDD2A28EF69F900B070F1 /* UserCell.swift in Sources */,
 				72BAD27F28EE842300C85DC9 /* SecuredFieldWithErrorHandler.swift in Sources */,
 				72BAD27D28EE785800C85DC9 /* TextFieldWithErrorHandler.swift in Sources */,
+				725CDD2728EF689C00B070F1 /* SearchView.swift in Sources */,
 				72BAD27428EE47CF00C85DC9 /* MeetPeopleNetworking.swift in Sources */,
 				72C3730A28EF507800190C83 /* StringUtils.swift in Sources */,
 				72BAD27628EE494700C85DC9 /* MeetPeopleAPIEndpoint.swift in Sources */,

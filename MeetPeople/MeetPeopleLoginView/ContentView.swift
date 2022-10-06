@@ -9,10 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject private var viewModel = MeetPeopleViewModel()
+    @State private var isShowingSecondView = false
     var body: some View {
-        VStack(alignment: .center, spacing: 70) {
-            loginTitle
-            loginFields
+        NavigationView {
+            VStack(alignment: .center, spacing: 70) {
+                loginTitle
+                loginFields
+                NavigationLink(
+                    destination:
+                        SearchView()
+                    .navigationTitle("Search")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationBarBackButtonHidden(true)
+                    .foregroundColor(Color("tfColor")),
+                    isActive: $isShowingSecondView) { EmptyView() }
+            }
         }
     }
 }
@@ -39,6 +50,7 @@ extension ContentView {
             SecuredFieldWithErrorHandler(field: $viewModel.password, isHighlighted: $viewModel.isSecureHighlighted, prompt: "Invalid password format", placeHolder: "Password")
             Button {
                 viewModel.loginTapped()
+                isShowingSecondView.toggle()
 //                viewModel.isHighlighted = true
 //                viewModel.isHighlighted = true
             } label: {
