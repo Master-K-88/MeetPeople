@@ -8,14 +8,25 @@
 import SwiftUI
 
 struct SearchView: View {
+    @ObservedObject private var viewModel = SearchViewModel()
     var body: some View {
         NavigationView {
-            VStack {
-                Text("Hello world")
-            }
             
+                ScrollView(.vertical, showsIndicators: false) {
+                    LazyVStack {
+                        ForEach(viewModel.userCellViewModels, id: \.id) { userCellViewModel in
+                            UserCell(userCellViewModel: userCellViewModel)
+                                .padding(.horizontal, 10)
+                        }
+                    }
+                }
+                .navigationTitle("Search")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarBackButtonHidden(true)
+                .foregroundColor(Color("tfColor"))
         }
     }
+    
 }
 
 struct SearchView_Previews: PreviewProvider {
@@ -23,3 +34,5 @@ struct SearchView_Previews: PreviewProvider {
         SearchView()
     }
 }
+
+//ForEach(viewModel.userCellViewModels, id: \.id) { cellViewModel in

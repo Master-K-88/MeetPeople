@@ -46,7 +46,6 @@ class MeetPeopleAPI<T: TargetType> {
             else { return promise(.failure(NetworkError.invalidURL)) }
             var request = URLRequest(url: url)
             request.httpMethod = target.method.rawValue
-            request.httpBody = self.buildParams(task: .getRequest)
             URLSession.shared
                 .dataTaskPublisher(for: request)
                 .tryMap(self.handleData)

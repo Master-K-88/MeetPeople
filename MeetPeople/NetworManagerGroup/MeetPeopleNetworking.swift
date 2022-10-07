@@ -16,8 +16,8 @@ extension MeetPeopleNetworking: TargetType {
     
     var path: String {
         switch self {
-        case .fetchUserData:
-            return ""
+        case .fetchUserData(let endpoint):
+            return endpoint
         }
     }
     

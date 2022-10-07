@@ -11,7 +11,7 @@ enum MeetPeopleAPIEndpoint {
     var API: String {
         switch self {
         case .testing:
-            return "https://randomuser.me/apiT%20https://randomuser.me/api"
+            return "https://randomuser.me/api"
         }
     }
 }

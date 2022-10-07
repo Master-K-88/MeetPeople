@@ -10,20 +10,17 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject private var viewModel = MeetPeopleViewModel()
     @State private var isShowingSecondView = false
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.presentationMode) var presentationMode
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 70) {
                 loginTitle
                 loginFields
-                NavigationLink(
-                    destination:
-                        SearchView()
-                    .navigationTitle("Search")
-                    .navigationBarTitleDisplayMode(.inline)
-                    .navigationBarBackButtonHidden(true)
-                    .foregroundColor(Color("tfColor")),
-                    isActive: $isShowingSecondView) { EmptyView() }
             }
+        }
+        .fullScreenCover(isPresented: $isShowingSecondView, onDismiss: didDismiss) {
+            SearchView()
         }
     }
 }
@@ -71,5 +68,10 @@ extension ContentView {
             
 
         }
+    }
+}
+
+private extension ContentView {
+    func didDismiss() {
     }
 }

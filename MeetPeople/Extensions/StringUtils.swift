@@ -17,4 +17,13 @@ extension String {
         let passwordTest =  NSPredicate(format: "SELF MATCHES %@", "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$")
         return passwordTest.evaluate(with: self)
     }
+    
+    func subString(num: Int) -> String {
+        if self.count > num {
+            let newStr = self.prefix(num)
+            return "\(newStr)..."
+        }
+        return self
+        
+    }
 }

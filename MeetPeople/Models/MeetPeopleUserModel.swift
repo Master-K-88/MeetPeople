@@ -8,14 +8,15 @@
 import Foundation
 
 struct MeetPeoplUserModel: Codable {
-    let result: [UserModel]
+    let results: [UserModel]?
 }
 
 struct UserModel: Codable {
     let gender: String
-    let name: UserNameModel
-    let location: UserLocationModel
+    let name: UserNameModel?
+    let location: UserLocationModel?
     let email: String
+    let picture: UserPictureModel?
 }
 
 struct UserNameModel: Codable {
@@ -25,14 +26,13 @@ struct UserNameModel: Codable {
 }
 
 struct UserLocationModel: Codable {
-    let street: UserStreetModel
+    let street: UserStreetModel?
     let city: String
     let state: String
     let country: String
-    let postcode: Int
-    let coordinates: UserCoordinates
+    let postcode: Int?
+    let coordinates: UserCoordinates?
     let timezone: UserTimeZone
-    let picture: UserPictureModel
 }
 
 struct UserStreetModel: Codable {
@@ -41,8 +41,8 @@ struct UserStreetModel: Codable {
 }
 
 struct UserCoordinates: Codable {
-    let latitude: Float
-    let longitude: Float
+    let latitude: String
+    let longitude: String
 }
 
 struct UserTimeZone: Codable {

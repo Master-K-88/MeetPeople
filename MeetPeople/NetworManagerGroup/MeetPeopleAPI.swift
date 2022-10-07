@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import Combine
 
 protocol MeetPeopleAPIProtocol {
-    func fetchData(endpoint: String)
+    func fetchData(endpoint: String) -> Future<UserModel, Error>
 }
