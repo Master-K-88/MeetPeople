@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject private var viewModel = MeetPeopleViewModel()
-    @State private var isShowingSecondView = false
+    
     @Environment(\.dismiss) private var dismiss
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
@@ -19,7 +19,7 @@ struct ContentView: View {
                 loginFields
             }
         }
-        .fullScreenCover(isPresented: $isShowingSecondView, onDismiss: didDismiss) {
+        .fullScreenCover(isPresented: $viewModel.isShowingSecondView, onDismiss: didDismiss) {
             SearchView()
         }
     }
@@ -44,10 +44,9 @@ extension ContentView {
     var loginFields: some View {
         VStack(alignment: .trailing, spacing: 20) {
             TextFieldWithErrorHandler(field: $viewModel.username, isHighlighted: $viewModel.isHighlighted, prompt: "Invalid email format", placeHolder: "Email")
-            SecuredFieldWithErrorHandler(field: $viewModel.password, isHighlighted: $viewModel.isSecureHighlighted, prompt: "Invalid password format", placeHolder: "Password")
+            SecuredFieldWithErrorHandler(field: $viewModel.password, isHighlighted: $viewModel.isSecureHighlighted, prompt: "Must be between 6 and 15 characters containing at least one number and one capital letter", placeHolder: "Password")
             Button {
                 viewModel.loginTapped()
-                isShowingSecondView.toggle()
 //                viewModel.isHighlighted = true
 //                viewModel.isHighlighted = true
             } label: {

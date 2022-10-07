@@ -71,11 +71,13 @@ struct UserCell: View {
                 }
                 
             }
-            Spacer()
             
         }
-        .padding(.horizontal, 10)
+            
+        .padding(10)
+        
         }
+        .cornerRadius(25)
     }
 }
 

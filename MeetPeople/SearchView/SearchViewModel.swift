@@ -14,6 +14,8 @@ class SearchViewModel: ObservableObject  {
     @Published var userProfiles = [UserModel]()
     private var subscriptions: Set<AnyCancellable> = Set<AnyCancellable>()
     let userService: MeetPeopleAPIProtocol = UserService()
+    @Published var searchText = ""
+    @Published var showingAlert = false
     
     init () {
         fetchData()
@@ -34,9 +36,19 @@ class SearchViewModel: ObservableObject  {
                     .store(in: &self.subscriptions)
             }
         }
-        
-
-            
-            
     }
+    var searchResults: [UserListCellViewModel] {
+            if searchText.isEmpty {
+                return userCellViewModels
+            } else {
+                return userCellViewModels.filter { searchResult in
+                    guard let lastNamePresent = searchResult.userProfile.name?.last.contains(searchText),
+                          let firstNamePresent = searchResult.userProfile.name?.first.contains(searchText) else {
+                        return false
+                    }
+                    return lastNamePresent || firstNamePresent
+                    
+                }
+            }
+        }
 }

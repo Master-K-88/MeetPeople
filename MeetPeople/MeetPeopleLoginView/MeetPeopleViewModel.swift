@@ -13,6 +13,8 @@ class MeetPeopleViewModel: ObservableObject {
     @Published var password: String = ""
     @Published var isHighlighted: Bool = false
     @Published var isSecureHighlighted: Bool = false
+    @Published var isShowingSecondView = false
+    @Published var showError = false
     
     private var subscriptions: Set<AnyCancellable> = Set<AnyCancellable>()
     
@@ -32,6 +34,13 @@ class MeetPeopleViewModel: ObservableObject {
             .eraseToAnyPublisher()
     }
     
+    private var loginValidation: AnyPublisher<Bool, Never> {
+        Publishers.CombineLatest($isHighlighted, $isSecureHighlighted)
+            .debounce(for: 0.3, scheduler: RunLoop.main)
+            .map { ($0 == true) || ($1 == true) }
+            .eraseToAnyPublisher()
+    }
+    
     func loginTapped() {
         print("I am here")
         loginEmailValidationPublisher
@@ -48,11 +57,24 @@ class MeetPeopleViewModel: ObservableObject {
                 self?.isSecureHighlighted = !value
             }
             .store(in: &subscriptions)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-            self?.isHighlighted = false
-            self?.isSecureHighlighted = false
-            self?.subscriptions.removeAll()
-        }
+        
+        loginValidation
+            .receive(on: RunLoop.main)
+            .sink { [weak self] loginValue in
+                print("The login value is \(loginValue)")
+                if loginValue {
+                    self?.subscriptions.removeAll()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+                        self?.isHighlighted = false
+                        self?.isSecureHighlighted = false
+                        
+                    }
+                } else {
+                    self?.isShowingSecondView = !loginValue
+                }
+            }
+            .store(in: &subscriptions)
+        
     }
     
     

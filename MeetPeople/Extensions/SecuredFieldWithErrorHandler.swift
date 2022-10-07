@@ -20,7 +20,7 @@ struct SecuredFieldWithErrorHandler: View {
     @Binding var field: String
     
     //MARK: Prompt message
-    var prompt: String = "Invalide email format"
+    var prompt: String = "Must be between 6 and 15 characters containing at least one number and one capital letter"
     @Binding var isHighlighted: Bool
     
     init(field: Binding<String>, isHighlighted: Binding<Bool>, fontSize: CGFloat = 14, bgColor: Color = Color("tfColor"), textColor: Color = .white, alignText: TextAlignment = .leading, prompt: String, placeHolder: String) {
@@ -46,7 +46,7 @@ struct SecuredFieldWithErrorHandler: View {
                 .border(isHighlighted ? .red : .clear)
                 .cornerRadius(10)
             Text(isHighlighted ? prompt : "")
-                .offset(y: -10)
+                .offset(y: -8)
                 .foregroundColor(.red)
                 .fixedSize(horizontal: false, vertical: true)
                 .font(.caption)
